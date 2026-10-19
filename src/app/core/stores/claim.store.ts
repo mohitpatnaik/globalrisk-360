@@ -7,7 +7,6 @@ import { Policy } from '../models/policy.model';
 import { ClaimStateMachine } from '../claims/claim-state-machine';
 import { Role } from '../models/common.model';
 import { ActivityStore } from './activity.store';
-import { ActivityEvent } from '../models/activity.model';
 @Injectable({ providedIn: 'root' })
 export class ClaimStore {
   private readonly api = inject(CLAIM_API); private readonly activityStore = inject(ActivityStore); private readonly claimState = signal<Claim[]>([]); private readonly loadingState = signal(false); private readonly errorState = signal<string | null>(null);

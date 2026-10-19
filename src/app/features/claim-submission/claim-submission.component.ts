@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, ReactiveFormsModule, ValidationErrors, Validators, FormBuilder } from '@angular/forms';
 import { PolicyStore } from '../../core/stores/policy.store';
 import { ClaimStore } from '../../core/stores/claim.store';
@@ -12,7 +11,7 @@ import { Router } from '@angular/router';
 import { ClaimStateMachine } from '../../core/claims/claim-state-machine';
 import { RoleService } from '../../core/services/role.service';
 import type { LocalPolicy } from '../../core/models/policy.model';
-import type { ActivityEvent, ActivityType } from '../../core/models/activity.model';
+import type { ActivityType } from '../../core/models/activity.model';
 import type { Claim } from '../../core/models/claim.model';
 
 interface CanDeactivateGuard {

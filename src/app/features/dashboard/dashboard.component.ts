@@ -1,6 +1,6 @@
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GrCardComponent } from '../../shared/ui/gr-card/gr-card.component';
@@ -19,7 +19,7 @@ export class DashboardComponent {
   private readonly filters = inject(FilterService); private readonly dashboard = inject(DashboardStore); private readonly claims = inject(ClaimStore); private readonly policies = inject(PolicyStore);
   // takeUntilDestroyed: safe subscription cleanup when the component is destroyed
   readonly stats = toSignal(this.filters.filter$.pipe(
-    switchMap((filter: any) => this.dashboard.load(filter)),
+    switchMap((filter) => this.dashboard.load(filter)),
     takeUntilDestroyed()
   ), { initialValue: null as DashboardStats | null });
   readonly activePolicies = computed(() => this.numberTile('active-policies')); readonly openClaims = computed(() => this.numberTile('open-claims')); readonly approvalRate = computed(() => this.numberTile('approval-rate')); readonly totalPremium = computed(() => this.moneyTile('total-premium')); readonly totalExposure = computed(() => this.moneyTile('total-exposure'));
