@@ -148,10 +148,13 @@ uvicorn main:app --reload
 
 ## Known Limitations
 
-- **Demo mode only**: Uses browser-persisted synthetic data; no live server persistence unless FastAPI backend is running
-- **No authentication**: Role switching is simulated via a header dropdown
-- **No file upload**: Supporting documents use synthetic metadata
-- **Single user**: No real multi-user collaboration
+- **Demo mode only (Phase 5 not wired)**: The app runs on a browser-persisted in-memory adapter (`InMemoryDataService`). The backend API interface (`*Api` tokens in `core/api/`) is defined but not connected to an HTTP client. A live FastAPI backend (Phase 5) and HTTP service wiring are not yet implemented — the app works fully offline as a demo.
+- **No live persistence**: All data is stored in `localStorage`; no server round-trip for create/update/delete.
+- **No authentication**: Role switching is simulated via a header dropdown.
+- **No file upload**: Supporting documents use synthetic metadata.
+- **Single user**: No real multi-user collaboration.
+- **Testing scope**: 2 unit tests cover the claim state machine. 6 Playwright E2E tests cover golden paths (dashboard, policy search, claim list, wizard, activity, 404). Store unit tests, pipe tests, and chart-mapper tests are noted as future work.
+- **GitHub Pages**: Not deployed (future enhancement).
 
 ---
 
@@ -161,6 +164,7 @@ This application runs entirely on **synthetic demonstration data**:
 - Customer names, policy numbers, claim details are all fictional
 - Financial amounts are illustrative only
 - No real customer or production information is shown or stored
+- All state is browser-persisted via `localStorage` (demo mode)
 
 ---
 

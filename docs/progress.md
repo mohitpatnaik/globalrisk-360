@@ -2,13 +2,13 @@
 
 ## Completion Report
 
-### ✅ All Phases Complete
+### ✅ Frontend Complete — Demo Mode Ship
 
 **Project**: GlobalRisk 360 — Enterprise Insurance Portfolio Management SPA
-**Status**: COMPLETE — Published to GitHub
+**Status**: FRONTEND SHIPPED (demo mode) — Published to GitHub
 **Repository**: https://github.com/mohitpatnaik/globalrisk-360
 **Branch**: main
-**Commit**: 858a8b1
+**Commit**: 39ee563
 
 ---
 
@@ -32,8 +32,8 @@
 - Store facade → InMemoryApi interface (swap-ready for FastAPI)
 
 ### Testing
-- **Unit tests**: 2 passing (claim state machine)
-- **E2E tests**: 6 passing (Playwright)
+- **Unit tests**: 2 passing (claim state machine) — *store unit tests, pipe tests, chart-mapper tests noted as future work*
+- **E2E tests**: 6 passing (Playwright) covering golden paths:
   - Dashboard loads
   - Policy list with search
   - Claim list with filtering
@@ -88,17 +88,19 @@ npm run lint
 
 ## Future Enhancements (Optional)
 
-1. **Phase 5**: FastAPI backend with SQLite persistence
-2. **GitHub Pages**: Deploy production build
-3. **Accessibility**: Keyboard navigation, ARIA labels
-4. **Expanded tests**: More E2E scenarios, Vitest unit tests
-5. **i18n**: Multi-language support
-6. **Role-based routing**: Auth guard for role-gated routes
+1. **Phase 5 (backlog)**: FastAPI backend with SQLite persistence, HTTP API service wiring, swap in-memory adapter for real persistence
+2. **Test depth (backlog)**: Store load/error/transition unit tests, pipe tests, chart-mapper tests
+3. **GitHub Pages**: Deploy production build
+4. **Accessibility**: Keyboard navigation, ARIA labels, WCAG-AA verification
+5. **Expanded E2E**: Full Poland claim lifecycle (create → submit → review → approve → pay → close)
+6. **i18n**: Multi-language support
+7. **Role-based routing**: Auth guard for role-gated routes
 
 ---
 
 ## Notes
 
-- Demo mode runs entirely offline with synthetic data
-- Backend API interface defined in `src/app/core/api/` (swap `InMemoryApi` for `HttpClientApi`)
+- Demo mode runs entirely offline with synthetic data — no live server persistence
+- Backend API interface defined in `src/app/core/api/` — in-memory adapter in use; Phase 5 (FastAPI + HTTP wiring) is a future enhancement
 - All data is fictional (synthetic demonstration data)
+- Atlas post-publish review offered; two non-blockers noted (test depth, honest doc framing)
