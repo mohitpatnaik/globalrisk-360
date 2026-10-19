@@ -6,10 +6,10 @@ test.describe('GlobalRisk 360 — E2E Tests', () => {
   });
 
   test('dashboard loads', async ({ page }) => {
-    await expect(page.locator('h1')).toBeVisible();
-    // Page should have substantial content
+    await page.goto('/dashboard');
+    await expect(page.locator('h1.page-heading')).toBeVisible();
     const body = await page.locator('body').textContent();
-    expect(body?.length).toBeGreaterThan(100);
+    expect(body?.length ?? 0).toBeGreaterThan(100);
   });
 
   test('policy list loads with search', async ({ page }) => {
@@ -21,8 +21,7 @@ test.describe('GlobalRisk 360 — E2E Tests', () => {
     await page.waitForTimeout(350);
     
     const rows = page.locator('tbody tr');
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
+    expect(await rows.count()).toBeGreaterThan(0);
   });
 
   test('claim list loads and filters', async ({ page }) => {
@@ -30,8 +29,7 @@ test.describe('GlobalRisk 360 — E2E Tests', () => {
     await expect(page.locator('h1.page-heading')).toContainText('Claims');
     
     const rows = page.locator('tbody tr');
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
+    expect(await rows.count()).toBeGreaterThan(0);
   });
 
   test('claim submission wizard loads', async ({ page }) => {

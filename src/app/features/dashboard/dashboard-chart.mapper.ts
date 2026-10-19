@@ -1,5 +1,18 @@
 import type { EChartsOption } from 'echarts';
 import { SeriesPoint } from '../../core/models/dashboard.model';
 export function barChart(points: SeriesPoint[], name: string, color: string): EChartsOption { return { tooltip: { trigger: 'axis' }, grid: { left: 52, right: 16, top: 20, bottom: 44 }, xAxis: { type: 'category', data: points.map((point) => point.label), axisLabel: { interval: 0, rotate: points.length > 3 ? 15 : 0 }, axisLine: { lineStyle: { color: '#cbd5e1' } } }, yAxis: { type: 'value', name, splitLine: { lineStyle: { color: '#e2e8f0' } } }, series: [{ type: 'bar', data: points.map((point) => point.value), itemStyle: { color, borderRadius: [5, 5, 0, 0] }, barMaxWidth: 42 }] }; }
-export function pieChart(points: SeriesPoint[]): EChartsOption { const colors = ['#d97706', '#0369a1', '#15803d', '#059669', '#b91c1c', '#64748b']; return { tooltip: { trigger: 'item' }, legend: { bottom: 0 }, series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '42%'], label: { show: false }, data: points.map((point, index) => ({ name: point.label.replaceAll('_', ' '), value: point.value, itemStyle: { color: colors[index % colors.length] } })) }] }; }
+export function pieChart(points: SeriesPoint[]): EChartsOption {
+  const colors = ['#d97706', '#0369a1', '#15803d', '#059669', '#b91c1c', '#64748b'];
+  return {
+    tooltip: { trigger: 'item' },
+    legend: { bottom: 0 },
+    series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '42%'], label: { show: false },
+      data: points.map((point, index) => ({
+        name: String(point.label ?? '').replace(/_/g, ' '),
+        value: point.value,
+        itemStyle: { color: colors[index % colors.length] }
+      }))
+    }]
+  };
+}
 export function lineChart(points: SeriesPoint[]): EChartsOption { return { tooltip: { trigger: 'axis' }, grid: { left: 38, right: 16, top: 18, bottom: 30 }, xAxis: { type: 'category', data: points.map((point) => point.label) }, yAxis: { type: 'value', minInterval: 1, splitLine: { lineStyle: { color: '#e2e8f0' } } }, series: [{ type: 'line', smooth: true, data: points.map((point) => point.value), lineStyle: { color: '#7c3aed', width: 3 }, itemStyle: { color: '#7c3aed' }, areaStyle: { color: 'rgba(124,58,237,.10)' } }] }; }

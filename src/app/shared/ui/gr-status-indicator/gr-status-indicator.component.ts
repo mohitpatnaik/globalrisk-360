@@ -17,5 +17,8 @@ const STATUS_TONES: Record<string, StatusTone> = {
 export class GrStatusIndicatorComponent {
   @Input({ required: true }) status = 'DRAFT';
   get tone(): StatusTone { return STATUS_TONES[this.status] ?? 'neutral'; }
-  get label(): string { return this.status.toLowerCase().replaceAll('_', ' ').replace(/^./, (value) => value.toUpperCase()); }
+  get label(): string {
+    const s = String(this.status ?? '');
+    return s.toLowerCase().replace(/_/g, ' ').replace(/^./, (v) => v.toUpperCase());
+  }
 }

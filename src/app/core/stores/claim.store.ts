@@ -1,5 +1,5 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { CLAIM_API } from '../api/claim.api';
 import { Claim, ClaimStatus, ClaimAction } from '../models/claim.model';
 import { FilterState } from '../models/dashboard.model';
@@ -18,7 +18,28 @@ export class ClaimStore {
   });
   constructor() { this.load().subscribe(); }
   load(): Observable<Claim[]> { this.loadingState.set(true); return this.api.list().pipe(tap((claims) => { this.claimState.set(claims); this.loadingState.set(false); this.errorState.set(null); }), catchError(() => { this.loadingState.set(false); this.errorState.set('Unable to load claims.'); return of([]); })); }
-  search(filter: FilterState, query: string, status: ClaimStatus | 'ALL', priority: Claim['priority'] | 'ALL', policies: Policy[]): Observable<Claim[]> { const policyIds = new Set(policies.filter((policy) => filter.line === 'ALL' || policy.line === filter.line).map((policy) => policy.id)); return this.api.list().pipe(map((claims) => claims.filter((claim) => (!query || `${claim.claimNumber} ${claim.title}`.toLowerCase().includes(query.toLowerCase())) && (filter.countryId === 'ALL' || claim.countryId === filter.countryId) && (filter.line === 'ALL' || policyIds.has(claim.localPolicyId)) && (status === 'ALL' || claim.status === status) && (priority === 'ALL' || claim.priority === priority))), tap((claims) => this.claimState.set(claims))); }
+  /**
+   * Pure, in-memory filter over the store's CURRENT claims. It must not call the
+   * API or overwrite `claimState` — doing so discarded claims added via
+   * `addClaim`/`transitionClaim` (submitted claims and status changes were lost
+   * whenever the list re-filtered). The component re-invokes this whenever the
+   * filter, query, or `claims` signal changes, so results stay reactive to
+   * mutations without a destructive refetch.
+   */
+  search(filter: FilterState, query: string, status: ClaimStatus | 'ALL', priority: Claim['priority'] | 'ALL', policies: Policy[]): Observable<Claim[]> {
+    return of(this.filterClaims(this.claimState(), filter, query, status, priority, policies));
+  }
+
+  filterClaims(claims: Claim[], filter: FilterState, query: string, status: ClaimStatus | 'ALL', priority: Claim['priority'] | 'ALL', policies: Policy[]): Claim[] {
+    const policyIds = new Set(policies.filter((policy) => filter.line === 'ALL' || policy.line === filter.line).map((policy) => policy.id));
+    const q = query.toLowerCase();
+    return claims.filter((claim) =>
+      (!query || `${claim.claimNumber} ${claim.title ?? ''}`.toLowerCase().includes(q))
+      && (filter.countryId === 'ALL' || claim.countryId === filter.countryId)
+      && (filter.line === 'ALL' || policyIds.has(claim.localPolicyId))
+      && (status === 'ALL' || claim.status === status)
+      && (priority === 'ALL' || claim.priority === priority));
+  }
   addClaim(claim: Claim): void {
     this.claimState.update((claims) => [claim, ...claims]);
   }
