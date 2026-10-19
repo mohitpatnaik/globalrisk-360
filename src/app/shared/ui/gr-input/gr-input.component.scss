@@ -1,0 +1,6 @@
+.gr-input { color: var(--gr-text); display: grid; gap: 6px; }
+.gr-input__label { font-size: var(--gr-text-xs); font-weight: 600; }
+input { background: var(--gr-surface); border: 1px solid var(--gr-border-strong); border-radius: var(--gr-radius-sm); color: inherit; font: inherit; height: 36px; padding: 0 11px; width: 100%; }
+input:focus { border-color: var(--gr-primary-600); box-shadow: var(--gr-focus-ring); outline: 0; }
+input[aria-invalid='true'] { border-color: var(--gr-danger-600); }
+.gr-input__hint, .gr-input__error { font-size: var(--gr-text-xs); }.gr-input__hint { color: var(--gr-text-subtle); }.gr-input__error { color: var(--gr-danger-600); }

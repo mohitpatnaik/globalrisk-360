@@ -1,0 +1,12 @@
+<aside class="sidebar" [class.sidebar--open]="mobileOpen" aria-label="Primary navigation">
+  <div class="brand"><span class="brand__mark">GR</span><span class="brand__text">GlobalRisk <strong>360</strong></span><button class="sidebar__close" aria-label="Close navigation" (click)="closed.emit()"><svg lucideX size="20" /></button></div>
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active" (click)="closed.emit()"><svg lucideLayoutDashboard size="20" /><span>Dashboard</span></a>
+    <a routerLink="/policies" routerLinkActive="active" (click)="closed.emit()"><svg lucideFileText size="20" /><span>Policies</span></a>
+    <a routerLink="/claims" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closed.emit()"><svg lucideClipboardList size="20" /><span>Claims</span></a>
+    <a routerLink="/claims/new" routerLinkActive="active" (click)="closed.emit()"><svg lucideFilePlus size="20" /><span>Submit Claim</span></a>
+    <a routerLink="/activity" routerLinkActive="active" (click)="closed.emit()"><svg lucideActivity size="20" /><span>Activity</span></a>
+  </nav>
+  <footer><span class="demo-dot"></span><span>Demo data environment</span></footer>
+</aside>
+@if (mobileOpen) { <button class="backdrop" aria-label="Close navigation" (click)="closed.emit()"></button> }

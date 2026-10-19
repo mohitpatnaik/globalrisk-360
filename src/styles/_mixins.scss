@@ -1,0 +1,2 @@
+@mixin focus-ring { &:focus-visible { box-shadow: var(--gr-focus-ring); outline: 0; } }
+@mixin page-heading { font-size: var(--gr-text-h1); line-height: 28px; margin: 0; }

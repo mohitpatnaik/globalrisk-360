@@ -1,0 +1,15 @@
+@use 'tokens';
+@use 'bootstrap-overrides';
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: var(--gr-bg); color: var(--gr-text); font: 400 var(--gr-text-body)/20px var(--gr-font-sans); }
+button, input, select, textarea { font: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gr-primary-600); outline-offset: 2px; }
+.page-heading { font-size: var(--gr-text-h1); line-height: 28px; margin: 0; }
+.page-subtitle { color: var(--gr-text-muted); margin: 5px 0 0; }
+.page-stack { display: grid; gap: var(--gr-space-5); }
+.demo-disclosure { color: var(--gr-text-subtle); font-size: var(--gr-text-xs); margin-top: var(--gr-space-6); text-align: center; }
+@media (max-width: 767.98px) { :root { --gr-content-pad: 16px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }

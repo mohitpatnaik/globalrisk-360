@@ -1,0 +1,7 @@
+.status { align-items: center; border-radius: var(--gr-radius-pill); display: inline-flex; font-size: var(--gr-text-xs); font-weight: 600; gap: 6px; line-height: 20px; padding: 2px 10px; }
+.status__dot { background: currentColor; border-radius: 50%; height: 6px; width: 6px; }
+.status--neutral { background: var(--gr-neutral-100); color: var(--gr-neutral-700); }
+.status--info { background: var(--gr-info-100); color: var(--gr-info-700); }
+.status--success { background: var(--gr-success-100); color: var(--gr-success-700); }
+.status--warning { background: var(--gr-warning-100); color: var(--gr-warning-700); }
+.status--danger { background: var(--gr-danger-100); color: var(--gr-danger-700); }

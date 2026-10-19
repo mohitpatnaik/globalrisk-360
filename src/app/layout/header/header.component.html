@@ -1,0 +1,11 @@
+<header>
+  <button class="menu-button" aria-label="Open navigation" (click)="menuOpened.emit()"><svg lucideMenu size="21" /></button>
+  <div class="breadcrumb"><span>GlobalRisk 360</span><strong>{{ breadcrumb() }}</strong></div>
+  <div class="filters" aria-label="Global filters">
+    <svg lucideGlobe2 size="17" aria-hidden="true" />
+    <label><span class="visually-hidden">Country</span><select (change)="setCountry($event)"><option value="ALL">All countries</option>@for (country of countries(); track country.id) { <option [value]="country.id">{{ country.name }}</option> }</select></label>
+    <label><span class="visually-hidden">Policy line</span><select (change)="setLine($event)"><option value="ALL">All lines</option>@for (line of policyLines; track line) { <option [value]="line">{{ line }}</option> }</select></label>
+    <label><span class="visually-hidden">Period</span><select (change)="setPeriod($event)"><option value="MTD">MTD</option><option value="QTD">QTD</option><option value="YTD" selected>YTD</option><option value="LAST_12M">Last 12 months</option><option value="ALL">All time</option></select></label>
+  </div>
+  <label class="role"><span>Viewing as</span><select (change)="setRole($event)">@for (role of roleOptions; track role) { <option [value]="role" [selected]="role === roles.role()">{{ role }}</option> }</select></label>
+</header>

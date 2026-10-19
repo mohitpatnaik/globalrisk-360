@@ -1,0 +1,4 @@
+<button [class]="'gr-button gr-button--' + variant + ' gr-button--' + size" [disabled]="disabled || loading" [attr.aria-busy]="loading" (click)="pressed.emit()">
+  @if (loading) { <span class="gr-button__spinner" aria-hidden="true"></span> }
+  <ng-content />
+</button>

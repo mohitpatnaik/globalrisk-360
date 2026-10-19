@@ -1,0 +1,4 @@
+<div class="table-wrap"><table><thead><tr>@for (column of columns; track column.key) { <th [class.numeric]="column.numeric">{{ column.label }}</th> }</tr></thead>
+  @if (customBody) { <ng-content select="[table-body]" /> }
+  @else { <tbody>@for (row of rows; track $index) { <tr tabindex="0" (click)="rowSelected.emit(row)" (keydown.enter)="rowSelected.emit(row)">@for (column of columns; track column.key) { <td [class.numeric]="column.numeric">{{ read(row, column.key) }}</td> }</tr> } @empty { <tr><td class="empty" [attr.colspan]="columns.length">{{ emptyMessage }}</td></tr> }</tbody> }
+</table></div>

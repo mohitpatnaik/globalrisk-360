@@ -1,0 +1,79 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Build production
+        run: npm run build --configuration production
+
+      - name: Run unit tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npx playwright test
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: dist
+          path: dist/global-risk-360/
+
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for secrets in source
+        run: |
+          # Simple scan for common secrets
+          if grep -r "api_key\|secret_key\|password\|token" src/ --include="*.ts" --include="*.html" --include="*.scss" 2>/dev/null; then
+            echo "⚠️ Potential secrets found in source code"
+            exit 1
+          else
+            echo "✅ No obvious secrets found"
+          fi
+
+      - name: Check for 'any' types
+        run: |
+          ANY_COUNT=$(grep -r "any" src/app/ --include="*.ts" | grep -v "any\[\]" | wc -l || echo 0)
+          if [ "$ANY_COUNT" -gt 0 ]; then
+            echo "⚠️ Found $ANY_COUNT uses of 'any' type"
+          else
+            echo "✅ No 'any' types found"
+          fi

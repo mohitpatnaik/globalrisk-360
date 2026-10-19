@@ -1,0 +1,4 @@
+.gr-card { background: var(--gr-surface); border: 1px solid var(--gr-border); border-radius: var(--gr-radius-md); box-shadow: var(--gr-shadow-sm); overflow: hidden; }
+.gr-card__header { align-items: center; border-bottom: 1px solid var(--gr-border); display: flex; justify-content: space-between; padding: var(--gr-space-4) var(--gr-space-5); }
+h2 { font-size: var(--gr-text-h2); line-height: 24px; margin: 0; }
+.gr-card__body { padding: var(--gr-space-5); }

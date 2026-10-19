@@ -1,0 +1,6 @@
+<app-sidebar [mobileOpen]="mobileNavOpen()" (closed)="mobileNavOpen.set(false)" />
+<app-header (menuOpened)="mobileNavOpen.set(true)" />
+<main>
+  <div class="content"><router-outlet /></div>
+</main>
+<router-outlet name="drawer" />

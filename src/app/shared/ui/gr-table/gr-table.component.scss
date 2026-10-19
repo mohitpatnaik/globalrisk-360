@@ -1,0 +1,7 @@
+.table-wrap { max-width: 100%; overflow-x: auto; }
+table { border-collapse: collapse; font-size: var(--gr-text-body); min-width: 640px; width: 100%; }
+th { background: var(--gr-surface-2); color: var(--gr-text-subtle); font-size: var(--gr-text-xs); letter-spacing: .04em; position: sticky; text-align: left; text-transform: uppercase; top: 0; }
+th, td { border-bottom: 1px solid var(--gr-border); height: 44px; padding: 0 var(--gr-space-4); }
+tbody tr:nth-child(even) { background: color-mix(in srgb, var(--gr-surface-2) 45%, white); }
+tbody tr:hover, tbody tr:focus-visible { background: var(--gr-primary-050); outline: 0; }
+.numeric { font-variant-numeric: tabular-nums; text-align: right; }.empty { color: var(--gr-text-muted); height: 120px; text-align: center; }

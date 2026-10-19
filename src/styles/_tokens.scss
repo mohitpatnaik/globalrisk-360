@@ -1,0 +1,12 @@
+:root {
+  --gr-primary-900: #0b2545; --gr-primary-800: #13315c; --gr-primary-700: #1b4079; --gr-primary-600: #2563eb; --gr-primary-500: #3b82f6; --gr-primary-100: #dbeafe; --gr-primary-050: #eff6ff;
+  --gr-bg: #f6f8fb; --gr-surface: #fff; --gr-surface-2: #f1f4f9; --gr-border: #e2e8f0; --gr-border-strong: #cbd5e1; --gr-text: #0f172a; --gr-text-muted: #475569; --gr-text-subtle: #64748b; --gr-text-on-dark: #e8eef7; --gr-text-on-dark-muted: #9fb3cd;
+  --gr-success-600: #15803d; --gr-success-100: #dcfce7; --gr-success-700: #14532d; --gr-warning-600: #b45309; --gr-warning-100: #fef3c7; --gr-warning-700: #78350f; --gr-danger-600: #b91c1c; --gr-danger-100: #fee2e2; --gr-danger-700: #7f1d1d; --gr-info-600: #0369a1; --gr-info-100: #e0f2fe; --gr-info-700: #0c4a6e; --gr-neutral-600: #475569; --gr-neutral-100: #f1f5f9; --gr-neutral-700: #334155;
+  --gr-chart-1: #2563eb; --gr-chart-2: #0891b2; --gr-chart-3: #7c3aed; --gr-chart-4: #d97706; --gr-chart-5: #059669; --gr-chart-6: #db2777; --gr-chart-7: #64748b;
+  --gr-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; --gr-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gr-text-display: 28px; --gr-text-h1: 22px; --gr-text-h2: 18px; --gr-text-h3: 15px; --gr-text-body: 14px; --gr-text-sm: 13px; --gr-text-xs: 12px; --gr-text-stat: 26px;
+  --gr-space-1: 4px; --gr-space-2: 8px; --gr-space-3: 12px; --gr-space-4: 16px; --gr-space-5: 24px; --gr-space-6: 32px; --gr-space-7: 48px; --gr-space-8: 64px;
+  --gr-sidebar-w: 248px; --gr-sidebar-w-collapsed: 68px; --gr-header-h: 56px; --gr-content-max: 1440px; --gr-content-pad: 24px; --gr-gutter: 16px;
+  --gr-radius-sm: 6px; --gr-radius-md: 10px; --gr-radius-lg: 14px; --gr-radius-pill: 999px; --gr-shadow-sm: 0 1px 2px rgba(15, 23, 42, .06); --gr-shadow-md: 0 4px 12px rgba(15, 23, 42, .08); --gr-shadow-lg: 0 12px 32px rgba(15, 23, 42, .16); --gr-focus-ring: 0 0 0 3px rgba(37, 99, 235, .35);
+  --gr-ease: cubic-bezier(.2, 0, 0, 1); --gr-dur-fast: 120ms; --gr-dur: 200ms; --gr-dur-slow: 320ms;
+}

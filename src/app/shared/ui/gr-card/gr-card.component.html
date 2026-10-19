@@ -1,0 +1,6 @@
+<section class="gr-card">
+  @if (title) {
+    <header class="gr-card__header"><h2>{{ title }}</h2><div class="gr-card__actions"><ng-content select="[card-actions]" /></div></header>
+  }
+  <div class="gr-card__body"><ng-content /></div>
+</section>

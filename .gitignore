@@ -1,0 +1,53 @@
+# October (generated — context bus / browser MCP)
+.codex/config.toml
+.codex/hooks.json
+.october/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+dist-browser/
+tmp/
+
+# Python
+backend/venv/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+test-results/
+coverage/
+*.lcov
+
+# Playwright
+.playwright/
+.browserslistrc
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Debug
+DEBUG=*

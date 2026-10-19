@@ -1,0 +1,6 @@
+<label class="gr-input" [for]="inputId">
+  <span class="gr-input__label">{{ label }}</span>
+  <input [id]="inputId" [type]="type" [value]="value" [placeholder]="placeholder" [disabled]="disabled" [attr.aria-describedby]="error ? inputId + '-error' : null" [attr.aria-invalid]="!!error" (input)="onInput($event)" />
+  @if (error) { <span class="gr-input__error" [id]="inputId + '-error'">{{ error }}</span> }
+  @else if (hint) { <span class="gr-input__hint">{{ hint }}</span> }
+</label>

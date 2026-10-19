@@ -1,0 +1,9 @@
+.gr-button { align-items: center; border: 1px solid transparent; border-radius: var(--gr-radius-md); cursor: pointer; display: inline-flex; font: inherit; font-weight: 600; gap: 8px; justify-content: center; padding: 0 14px; transition: background var(--gr-dur-fast) var(--gr-ease), box-shadow var(--gr-dur-fast) var(--gr-ease); }
+.gr-button:focus-visible { box-shadow: var(--gr-focus-ring); outline: 0; }
+.gr-button:disabled { cursor: not-allowed; opacity: .45; }
+.gr-button--sm { height: 28px; font-size: 12px; }.gr-button--md { height: 36px; font-size: 14px; }.gr-button--lg { height: 44px; font-size: 15px; }
+.gr-button--primary { background: var(--gr-primary-600); color: white; }.gr-button--primary:hover:not(:disabled) { background: var(--gr-primary-500); }
+.gr-button--secondary { background: var(--gr-surface); border-color: var(--gr-border-strong); color: var(--gr-text); }.gr-button--ghost { background: transparent; color: var(--gr-primary-600); }.gr-button--danger { background: var(--gr-danger-600); color: white; }
+.gr-button__spinner { animation: spin .8s linear infinite; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; height: 14px; width: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .gr-button__spinner { animation: none; } }

@@ -1,0 +1,18 @@
+<div class="page-stack">
+  <div><h1 class="page-heading">Risk overview</h1><p class="page-subtitle">A consolidated view of your multinational insurance program.</p></div>
+  <section class="stats" aria-label="Key performance indicators">
+    <gr-card><span class="stat-label">Active policies</span><strong>{{ activePolicies() }}</strong><small>Current filtered portfolio</small></gr-card>
+    <gr-card><span class="stat-label">Total premium</span><strong>{{ totalPremium().amountMinor / 100 | currency:totalPremium().currency:'symbol':'1.0-0' }}</strong><small>Across selected programs</small></gr-card>
+    <gr-card><span class="stat-label">Open claims</span><strong>{{ openClaims() }}</strong><small>Excludes settled and closed</small></gr-card>
+    <gr-card><span class="stat-label">Approval rate</span><strong>{{ approvalRate() / 100 | percent:'1.0-0' }}</strong><small>Approved, settled, or closed</small></gr-card>
+    <gr-card><span class="stat-label">Total exposure</span><strong>{{ totalExposure().amountMinor / 100 | currency:totalExposure().currency:'symbol':'1.0-0' }}</strong><small>Coverage limits in current slice</small></gr-card>
+  </section>
+  <section class="chart-grid">
+    <gr-card title="Premium by country"><gr-chart [option]="premiumOption()" ariaLabel="Bar chart of premium by country" /></gr-card>
+    <gr-card title="Claims by status"><gr-chart [option]="claimsStatusOption()" ariaLabel="Donut chart of claims grouped by status" /></gr-card>
+    <gr-card title="Exposure by category"><gr-chart [option]="exposureOption()" ariaLabel="Bar chart of exposure by risk category" /></gr-card>
+    <gr-card title="Claims over time"><gr-chart [option]="claimsOverTimeOption()" ariaLabel="Line chart of claims volume over time" /></gr-card>
+  </section>
+  <gr-card title="Recent claims"><div class="claim-list">@for (claim of recentClaims(); track claim.id) { <div><span><strong>{{ claim.claimNumber }}</strong><small>{{ claim.title }}</small></span><gr-status-indicator [status]="claim.status" /></div> }</div></gr-card>
+  <p class="demo-disclosure">Synthetic demonstration data — no customer or production information is shown.</p>
+</div>

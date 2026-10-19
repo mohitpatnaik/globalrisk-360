@@ -1,0 +1,6 @@
+.gr-badge { align-items: center; border-radius: var(--gr-radius-pill); display: inline-flex; font-size: var(--gr-text-xs); font-weight: 600; line-height: 20px; padding: 1px 9px; }
+.gr-badge--neutral { background: var(--gr-neutral-100); color: var(--gr-neutral-700); }
+.gr-badge--info { background: var(--gr-info-100); color: var(--gr-info-700); }
+.gr-badge--success { background: var(--gr-success-100); color: var(--gr-success-700); }
+.gr-badge--warning { background: var(--gr-warning-100); color: var(--gr-warning-700); }
+.gr-badge--danger { background: var(--gr-danger-100); color: var(--gr-danger-700); }
