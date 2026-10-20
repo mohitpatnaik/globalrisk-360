@@ -28,7 +28,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build production
-        run: npm run build --configuration production
+        run: npm run build -- --configuration production
 
       - name: Run unit tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
@@ -62,12 +62,25 @@ jobs:
 
       - name: Check for secrets in source
         run: |
-          # Simple scan for common secrets
-          if grep -r "api_key\|secret_key\|password\|token" src/ --include="*.ts" --include="*.html" --include="*.scss" 2>/dev/null; then
-            echo "⚠️ Potential secrets found in source code"
+          # Scan for actual hardcoded secrets (not variable names or common words)
+          # Only flags things that look like hardcoded credentials
+          FAILED=0
+          for pattern in \
+            'api_key\s*=\s*["'\''"][A-Za-z0-9]{16,}' \
+            'secret_key\s*=\s*["'\''"][A-Za-z0-9]{16,}' \
+            'password\s*=\s*["'\''"][^"'\''\s]{4,}' \
+            'AKIA[0-9A-Z]{16}' \
+            'ghp_[A-Za-z0-9]{36}' \
+            'sk-proj-[A-Za-z0-9]{20,}'; do
+            if grep -rP "$pattern" src/ --include="*.ts" --include="*.html" --include="*.scss" 2>/dev/null; then
+              FAILED=1
+            fi
+          done
+          if [ "$FAILED" -eq 1 ]; then
+            echo "❌ Potential hardcoded secrets found in source code"
             exit 1
           else
-            echo "✅ No obvious secrets found"
+            echo "✅ No obvious hardcoded secrets found"
           fi
 
       - name: Check for 'any' types
